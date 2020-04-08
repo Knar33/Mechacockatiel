@@ -63,7 +63,7 @@ void rotateMotor(int motorId, float position, int time, float upperBound, float 
 
 void errorCheck(int motorId) {
   int status = Herkulex.stat(motorId);
-  if (status != 0) {
+  if (status != 0 && status != 255 && status != 254) {
     String errorMessage = "Motor error on motor ID ";
     errorMessage += motorId;
     errorMessage += ": ";
