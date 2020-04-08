@@ -24,13 +24,15 @@ void loop(){
   rotateHipMotor(hipRotation, 0);
   rotateFaceMotor(faceRotation, 0);
   rotateHeadMotor(headRotation, 0);
+
+  errorCheck();
+  
   delay(33);
 }
 
 void rotateHipMotor(float position, int time) {
   rotateMotor(hip, position, time, 100, 10);
 }
-
 
 void rotateFaceMotor(float position, int time) {
   rotateMotor(face, position, time, 150, -150);
@@ -49,4 +51,21 @@ void rotateMotor(int motorId, float position, int time, float upperBound, float 
   }
   
   Herkulex.moveOneAngle(motorId, position, time, LED_BLUE);
+}
+
+void errorCheck() {
+  byte hipStat = Herkulex.stat(hip);
+  byte faceStat = Herkulex.stat(face);
+  byte headStat = Herkulex.stat(head);
+
+  String hipError = "Hip: ";
+  hipError += hipStat;
+  String faceError = "Face: ";
+  faceError += faceStat;
+  String headError = "Head: ";
+  headError += headStat;
+  
+  Serial.println(hipError);
+  Serial.println(faceError);
+  Serial.println(headError);
 }
