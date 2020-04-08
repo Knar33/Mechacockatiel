@@ -7,9 +7,9 @@ int head = 0x02;
 void setup()
 {
   delay(2000);  //a delay to have time for serial monitor opening
-  Serial.begin(115200);    // Open serial communications
+  Serial.begin(57600);    // Open serial communications
   Serial.println("Begin");
-  Herkulex.begin(115200,10,11); //open serial with rx=10 and tx=11
+  Herkulex.begin(57600,10,11); //open serial with rx=10 and tx=11
   Herkulex.reboot(hip); //reboot first motor
   delay(500);
   Herkulex.initialize(); //initialize motors
@@ -54,9 +54,9 @@ void rotateMotor(int motorId, float position, int time, float upperBound, float 
 }
 
 void errorCheck() {
-  byte hipStat = Herkulex.stat(hip);
-  byte faceStat = Herkulex.stat(face);
-  byte headStat = Herkulex.stat(head);
+  int hipStat = Herkulex.stat(hip);
+  int faceStat = Herkulex.stat(face);
+  int headStat = Herkulex.stat(head);
 
   String hipError = "Hip: ";
   hipError += hipStat;
@@ -65,7 +65,7 @@ void errorCheck() {
   String headError = "Head: ";
   headError += headStat;
   
-  Serial.println(hipError);
-  Serial.println(faceError);
-  Serial.println(headError);
+  Serial.println(hipStat);
+  Serial.println(faceStat);
+  Serial.println(headStat);
 }
