@@ -50,6 +50,17 @@ void potentiometerControl() {
   delay(33);
 }
 
+void forwardWalkCalibration() {
+  float forwardAngle = ((float)analogRead(A0) / 11.37) + 10;
+  float backwardAngle = ((float)analogRead(A1) / 11.37) + 10;
+  int restTime = analogRead(A2);
+
+  rotateMotor(hip, forwardAngle, 0, hipUpperBound, hipLowerBound);
+  delay(restTime);
+  rotateMotor(hip, backwardAngle, 0, hipUpperBound, hipLowerBound);
+  delay(1000);
+}
+
 void rotateMotor(int motorId, float position, int time, float upperBound, float lowerBound) {
   if (position > upperBound) {
     position = upperBound;
