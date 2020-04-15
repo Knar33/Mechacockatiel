@@ -1,8 +1,8 @@
 #include <Herkulex.h>
 
 int hip = 0x00;
-float hipUpperBound = 100;
-float hipLowerBound = 10;
+float hipUpperBound = 90;
+float hipLowerBound = 0;
 
 int face = 0x01;
 float faceUpperBound = 150;
@@ -35,7 +35,7 @@ void loop(){
 }
 
 void potentiometerControl() {
-  float hipRotation = ((float)analogRead(A0) / 3.2) - 160;
+  float hipRotation = (((float)analogRead(A0) / 4) * -1) + 90;
   float faceRotation = ((float)analogRead(A1) / 3.2) - 160;
   float headRotation = ((float)analogRead(A2) / 3.2) - 160;
 
