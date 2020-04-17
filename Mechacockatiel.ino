@@ -1,4 +1,5 @@
 #include <Herkulex.h>
+#include <SoftwareSerial.h>
 
 int hip = 0x00;
 float hipUpperBound = 90;
@@ -31,7 +32,22 @@ void setup()
 }
 
 void loop(){
-  potentiometerControl();
+  something();
+}
+
+void nothing() {
+  
+}
+
+void something() {  
+  rotateMotor(hip, 0, 0, hipUpperBound, hipLowerBound);
+  rotateMotor(face, 0, 0, faceUpperBound, faceLowerBound);
+  rotateMotor(head, 0, 0, headUpperBound, headLowerBound);
+  delay(1000);  
+  rotateMotor(hip, 90, 0, hipUpperBound, hipLowerBound);
+  rotateMotor(face, 90, 0, faceUpperBound, faceLowerBound);
+  rotateMotor(head, 90, 0, headUpperBound, headLowerBound);
+  delay(1000);
 }
 
 void potentiometerControl() {
