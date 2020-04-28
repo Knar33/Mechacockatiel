@@ -1,5 +1,4 @@
 #include <Herkulex.h>
-#include <SoftwareSerial.h>
 
 int hip = 0x00;
 float hipUpperBound = 90;
@@ -18,9 +17,8 @@ long baudRate = 57600;
 void setup()
 {
   delay(2000);  //a delay to have time for serial monitor opening
-  Serial.begin(baudRate);    // Open serial communications
-  Serial.println("Begin");
-  Herkulex.begin(baudRate,10,11); //open serial with rx=10 and tx=11
+  Serial.begin(baudRate);
+  Herkulex.begin(baudRate, 10, 11); //open serial with rx=10 and tx=11
   Herkulex.reboot(hip); //reboot first motor
   delay(500);
   Herkulex.initialize(); //initialize motors
